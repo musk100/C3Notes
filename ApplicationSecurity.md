@@ -1,5 +1,11 @@
 <!-- Intro to SSDLC & Security Definitions -->
 
+<style>
+table th {
+    background-color: green;
+}
+</style>
+
 <!-- Application Security Introduction -->
 `Application Security Introduction`
 # Section 2: Welcome!
@@ -1575,3 +1581,58 @@ If the end-user accepts the OpenID provider's request to trust the relying party
 
   - **Vulnerability** - The goal here is to estimate the likelihood of the particular vulnerability involved being discovered and exploited. Assume the threat agent selected above 
     * Ease of Discovery, Ease of Exploit, Awareness, Intrusion Detection
+
+&nbsp;
+
+## Likelihood Factors
+![Likelihood Factors](AppSecurityImages/LikelihoodFactors.png)
+
+&nbsp;
+
+## Estimating Impact
+  - When considering the impact of a successful attack, it's important to realize that there are two kinds of impacts. The first is the "**technical impact**" on the application, the data it uses, and the functions it provides. The other is the "**business impact**" on the business and company operating the application
+
+&nbsp;
+
+## Factors 
+  - **Technical Impact** - Technical impact can be broken down into factors aligned with the traditional security areas of concern: confidentiality, integrity, availability and accountability. The goal is to estimate the magnitude of the impact **on the system** if the vulnerability were to be exploited
+
+  - **Business Impact** - The business impact stems from the technical impact but requires a deep understanding of **what is important to the company running the application.** In general, you should be aiming to support your risks with business impact, particularly if your audience is executive level. The business risk is what justifies investment in fixing security problems
+
+&nbsp;
+
+| **Technical Impact Factors**                                                            | **Business Impact Factors**                                                                        |
+| --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| **Loss of confidentiality** - How much data could be disclosed and how sensitive is it  | **Financial damage** - How much financial damage will result from an exploit                       |
+| **Loss Of Integrity** - How much data could be corrupted and how damaged is it?         | **Reputation Damage** - Would an exploit result in reputation damage that would harm the business? |
+| **Loss of Availability** - How much service could be lost and how vital is it?          | **Non-Compliance** - How much exposure does non-compliance introduce?                              |
+| **Loss Of Accountability** - Are the threat agents' actions traceable to an individual? | **Privacy Violation** - How much personally identifiable information could be  disclosed?          |
+
+&nbsp;
+
+## Determine The Severity Of The Risk
+  - In this step, the likelihood estimate and the impact estimate are put together to calculate an overall security for this risk. This is done by figuring out whether the likelihood is low, medium, or high and then do the same for impact
+
+    * **Informal**: In many environments, there is nothing wrong with reviewing the factors and simply capturing the answers. The tester should think through the factors and identify the key "driving" factors that are controlling the result
+
+    * **Repeatable**: If it is necessary to defend the ratings or make them repeatable, then it is necessary to go through a more formal process of rating the factors and calculating the result
+
+&nbsp;
+
+## Deciding What To Fix
+  - After the risks to the application have been classified, there will be a prioritized list of what to fix. As a general rule, the most severe risks should be fixed first. It simply doesn't help the overall risk profile to fix less important risks, even if they're easy or cheap to fix
+
+  - Remember that not all risks are worth fixing and some loss is not only expected, but justifiable based upon the cost of fixing the issue. For example, if it would cost $100,000 to implement controls to stem $2,000 of fraud per year, it would take 50 years return on investment to stamp out the loss. But remember there may be reputation damage from the fraud that could cost the organization much more
+
+&nbsp;
+
+## Handling Risk
+  - **Accept**: Document the risk, acknowledge it and assign ownership
+
+  - **Avoid**: Place other controls that will reduce or eliminate the risk
+
+  - **Mitigate**: Fix the issue that exposes you to risk
+
+  - **Transfer**: If you are practically unable to deal with a risk, you may contractually obligate someone else to accept the risk
+
+&nbsp;
