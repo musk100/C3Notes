@@ -1636,3 +1636,1085 @@ If the end-user accepts the OpenID provider's request to trust the relying party
   - **Transfer**: If you are practically unable to deal with a risk, you may contractually obligate someone else to accept the risk
 
 &nbsp;
+
+## Threat Mitigation Examples
+![Threat Mitigation Examples](AppSecurityImages/ThreatMitigationExamples.png)
+
+&nbsp;
+---
+
+`Introduction To Threat Modeling`
+## Threat Modeling
+  - Threat modeling is a structured approach to identify, quantify, and address the security threats and risks associated with an application
+
+  - Threat modeling is an investigative technique for identifying application security risks/hazards that are technical (and even implementation specific)
+
+&nbsp;
+
+## Definitions 
+### Abuser
+  - **Abusers** are those who would misuse intentionally or unintentionally an element of the system under consideration
+    * Hactivist
+    * Cyber Criminals 
+    * Advanced Persistent Threats
+
+&nbsp;
+
+### Asset 
+  - An **Asset** is anything we deem to have value
+    * that which the system must protect from abusers
+
+  - Money
+  - Precious metals 
+  - House, Car
+  - Data (PHI, PII, PCI)
+
+&nbsp;
+
+## Threats
+  -  A threat is a means by which an abuser might compromise an asset that has potential for success
+  - Threats can include everything from hackers and malware, from earthquakes to wars
+  - Intention is not a factor when considering threats, thus the mechanical failure of a typical platter hard drive is a threat as is a coordinated attack by an attacker
+
+&nbsp;
+
+## Hazard Vs Threat
+  - A **hazard** is a potential source of harm or danger
+    * A harmless state with potential to change into a threat
+
+  - A **threat** is a specific type of **hazard** involving an **abuser** potentially harming an **asset**
+    * In a harmful state
+
+  - Tree hazards include dead or dying trees, dead parts of live trees, or unstable live trees that are within striking distance of people or property (a target). Hazard trees have the potential to cause property damage, personal injury or fatality in the event of a failure
+
+&nbsp;
+
+## Risk
+  - The potential for loss, damage or destruction of an asset as a result of a threat exploiting a vulnerability
+  - Based on the previous example, a mechanical failure of a hard drive is probably more likely than an attack by an attacker, but the overall impact might be significantly lower, thus making it less risky
+
+&nbsp;
+
+## Identify, Quantify And Address Risks And Threats
+### Do not trust your gut feeling
+  - As humans, we are naturally inclined to make immediate decisions based upon a feeling
+  - No hollywood scenarios. Be realistic
+
+&nbsp;
+
+## Assumptions
+  1. You shouldn't assume you have a secure environment
+    - In most cases you don't have control over it 
+
+  2. You shouldn't assume that computer, network or storage resources are reliable
+    - Can an application successfully survive loss of storage, network outages, etc, and stay healthy?
+
+  3. But when threat modeling, we shouldn't assume that the environment is correctly configured
+
+&nbsp;
+
+## Defense In Depth
+  -  The principle of defense-in-depth is that layered security mechanisms increases security of the system as a whole
+
+  - In theory in defense in depth, you never make a tradeoff between performance and security, but in reality you and do and to properly calculate those choices, you need the full context of your stack
+
+&nbsp;
+
+## Benefits
+  - Better understanding of the architecture
+  - Create reusable architecture models
+  - Inputs into: 
+    * Penetration Testing
+    * Scanning
+    * Code Reviews
+    * Risk Management
+
+&nbsp;
+---
+
+`Type Of Threat Modeling`
+## Threat Model Manual Vs Tools
+  - **Manual**: 
+    * More favorable in terms of quality and custom ability
+    * Just need a whiteboard, group of experts on the product and security
+    * However, not scalable
+  
+  - **Using A Tool**:
+    * More scalable
+    * Not always consensus on the tool - Some may use Wiki, PPT, Visio, Architecture Tool, or a TM Tool
+    * Can lead to a "check the box mentality
+
+&nbsp;
+
+## Threat Model Types
+  - **OCTAVE: Operational Critical Threat Asset and Vulnerability Evaluation**
+    * Focuses on non-technical risk that result from breeched data assets
+    * Assets are identified and classified. This helps define the scope
+    * Drawback is that as systems grow, re-doing the id and classification can be difficult
+
+  - **PASTA: Process for Attack Simulation and Threat Analysis (Business Impact)**
+    * Takes an attacker view and then develops a threat management, enumeration, and scorring process. This can then be elevated to key decision makers to determine what risk to tackle as opposed to developing requirements at the SDLC level
+
+  - **STRIDE (Technical Impact)**: 
+    * Used in MS-TM and MS SDL (Security Development Lifecycle) and one that is generally easy to follow if doing a manual threat model
+
+    * Builds a DFD used to identify system entities, events, and boundaries and applies a general set of known threats using the mnemonic
+
+&nbsp;
+
+## Spoofing
+### Definition
+  - One person or program successfully masquerades as another by falsifying data, thereby gaining an illegitimate advantage
+
+### Example
+  - Threat action aimed to illegally access and use another user's credentials, such as username and password
+
+### Security Control
+  - Authentication
+
+&nbsp;
+
+## Tampering
+### Definition
+  - Intentional modification of products in a way that would make them harmful to the consumer
+
+### Example
+  - Threat action aimed to maliciously change/modify persistent data, such as persistent data in a database, and the alteration of data in transit between two computers over an open network, such as the internet
+
+### Security Control
+  - Integrity using hashing algorithms, checksum
+
+&nbsp;
+
+## Repudiation
+### Definition
+  - State of affairs where the author of a statement will not be able to successfully challenge the authorship of the statement or validity of an associated contract
+
+### Example
+  - Threat action aimed to perform illegal operations in a system that lacks the ability to trace the prohibited operations
+
+### Security Control
+  - Non-Repudiation using encryption, digital signatures, and notarization
+
+&nbsp;
+
+## Information Disclosure
+### Definition
+  - The intentional or unintentional release of secure or private/confidential information to an untrusted environment
+
+### Example
+  - Threat action to read a file that one was not granted access to, or to read data in transit
+
+### Security Control
+  - Confidentiality through encryption
+
+&nbsp;
+
+## Denial Of Service
+### Definition
+  - A cyber-attack where the perpetrator seeks to make a machine or network resource unavailable to its intended users by temporarily or indefinitely disrupting services of a host
+
+### Example
+  - Threat aimed to deny access to valid users, such as by making a web server temporarily unavailable or unusable
+
+### Security Control
+  - Availability
+
+&nbsp;
+
+## Elevation Of Privileges
+### Definition
+  - The act of exploiting a bug, design flaw, or configuration oversight in an operating system or software application to gain elevated access to resources that are normally protected from an application or user
+
+### Example
+  - Threat aimed to gain privileged access to resources for gaining unauthorized access to information or to compromise a system
+
+### Security Control
+  - Authorization
+
+&nbsp;
+---
+
+`Introduction To Manual Threat Modeling`
+## Manual Threat Model
+### Best Done In Groups
+  - Including:
+    * Implementation expert (an architect)
+    * Solution Designer
+    * Implementation Team
+    * Should include a security SME
+    * Group should be a manageable size (6-8 people)
+
+&nbsp;
+
+## Who Is The Audience?
+  - **Your team** - The threat model becomes a reference for understanding the security of your solution, and therefore is like system level tech design
+
+  - **Other teams** - Other teams may rely on your components to understand their own security. Threat models should reference related threat models
+
+  - **Pen Testers** - This is a map to potentially hacking the application
+
+  - **Clients** - Your clients may ask to see if you are considering security. You would most likely hand over a high level and not a raw threat model
+
+&nbsp;
+
+## Threat Modeling Mindset
+![Threat Modeling Mindset](AppSecurityImages/ThreatModelingMindset.png)
+
+&nbsp;
+
+## Threat Models Are Never Complete
+  - This is a living artifact expected to change and grow over time. A complex system is never truly complete
+
+&nbsp;
+--- 
+
+`Prepping For Microsoft Threat Model Tool`
+## Creating The Model
+  - System Model
+  - Find Threats
+  - Address Threats
+  - Validate Model
+
+&nbsp;
+
+  - Using Microsoft Threat Model, the architecture is drawn out
+  - The diagram should be as in depth as possible, but should not be so much that it is distracting
+  - The scope of the diagram should be identified
+
+&nbsp;
+
+# Step 1: Decompose The Application
+## Things To Consider...
+  - Scope
+  - Actors/Abusers
+  - System Components (e.g. databases, mail servers, etc)
+  - Process and Data Flows (e.g. cookies, tokens, etc)
+  - Backups, monitoring, logging, etc
+
+&nbsp;
+
+## A Note About Scoping
+  - This is a combination of a workflow diagram and an architecture diagram
+  - Boil down a workflow to something as small as you can
+  - The purpose of scoping small is to concentrate on a small part of the system so you can get to the end of the threat modeling process
+  - For a reasonably complex system, you would otherwise never reach the end
+
+&nbsp;
+
+# Step 2: Create A Diagram
+  - The diagram must help you understand and discuss system security considerations
+
+  - The diagram should contain the items determined in step 1. It is okay if you missed things. You can always go back and break things down further or remove items as you gain a better view of the system
+
+  - The diagram should show components, data stores, data flows and trust boundaries
+
+&nbsp;
+
+# Step 3: Identify And Analyze Threats
+## What Can Go Wrong
+  - Now that you have a diagram, you can really start looking for what can go wrong with its security
+  - Classifying threats using STRIDE: 
+    * **S**poofing
+    * **T**ampering
+    * **R**epudiation
+    * **I**nformation Disclosure
+    * **D**enial Of Service
+    * **E**levation Of Privilege
+
+&nbsp;
+
+## Getting Started
+  - If you're not sure where to start, start with the external entities or events which drive activity
+  - Wherever you choose to begin, you want to aspire to some level of organization
+  - You could also go in "**STRIDE** order" through the diagram
+  - Without some organization, it is hard to tell when you're done, but be careful not to add so much structure that you stifle creativity
+
+&nbsp;
+---
+
+# Section 8: Encryption And Hashing
+`Encryption Overview`
+## Encryption Types
+### Symmetric Encryption 
+  - Allows for encryption and decryption 
+  - Same key is used to encrypt and decrypt data
+  - Example: Use this for storing sensitive data in a database
+
+### Asymmetric Encryption
+  - Allows for encryption and decryption, as well as repudiation
+  - One key is used to encrypt and another key is used to decrypt data
+  - Example: Verify that a message came from an individual using their private key
+
+&nbsp;
+
+## Symmetric Encryption
+### AES
+  - AES has been adopted by the U.S. government and is now used worldwide. It supersedes the Data Encryption Standard (DES),[9] which was published in 1977
+
+### Blowfish
+  - Blowfish provides a good encryption rate in software and no effective cryptanalysis of it has been found to date
+
+### 3DES
+  - A symmetric-key block cipher, which applies the DES cipher algorithm three times to each data block
+
+#### Older, less secure algorithms: DES, RC4
+
+&nbsp;
+
+## Asymmetric Encryption
+  - Keys are generated together
+  - Public keys are freely distributed
+  - Private keys are kept secret and never handed out
+  - Private key is used for Encryption/Decryption and Signing
+
+&nbsp;
+
+## RSA
+  - RSA (Rivest-Shamir-Adleman) is the most widely used asymmetric. Used for encryption and digital signatures
+  - In RSA cryptography, both the public and the private keys can encrypt a message; the opposite key from the one used to encrypt a message is used to decrypt it
+  - It provides a method of assuring the confidentiality, integrity, authenticity and non-reputability of electronic communications and data storage
+
+&nbsp;
+
+## Symmetric Vs Asymmetric
+![Symmetric & Asymmetric](AppSecurityImages/SymmetricVsAsymmetric.png)
+
+&nbsp;
+---
+
+`Encryption Use Cases`
+## Use Case 1: HTTPS - Encryption
+![Use Case 1: HTTPS - Encryption](AppSecurityImages/HTTPSEncryption.png)
+
+&nbsp;
+
+## Use Case 2: Signing
+![Use Case 2: Signing](AppSecurityImages/Signing.png)
+
+&nbsp;
+
+## Use Case 3: Signing With Security
+![Use Case 3: Signing with security](AppSecurityImages/SigningWithSecurity.png)
+
+&nbsp;
+
+## Key Management
+  - The algorithms that encrypt the data are all the -- what makes it secure are the keys
+  
+  - As organizations use more encryptions, they also end up with more keys, and more varieties of keys
+
+  - In some companies, you might have millions of keys. Every day, you generate more keys and they have to be managed and controlled. If the bad guy gets access to the keys, he gets access to the data. If they keys get lost, you cannot access the data
+
+  - Other factors that contributed to the pain were fragmented and isolated systems, lack of skilled staff, and inadequate management tools
+
+&nbsp;
+---
+
+`Hashing Overview`
+## What Is A Hash?
+  - One-way. Not possible to reverse
+  - **Collision Resistant** - given an input and its hash, it should be hard to find a different input with this same hash
+
+&nbsp;
+
+## What Is A Salt
+  - Random data of fixed length
+  - Concatenated to input before hashing
+  - Unique for each input
+  - Used to make hashes unique and protect against brute force style attacks
+
+&nbsp;
+
+## Hash Functions
+  - **MD5** - Producing a 128-bit hash, MD5 is a widely used, however not very secure hashing algorithm. It can still be used as a checksum to verify data integrity, but only against unintentional corruption
+
+  - **SHA-1** - Produces a 160-bit hash value. Since 2005, SHA-1 has been considered insecure against robust attacks. Since then, it has been deemed as insecure as MD5
+
+  - **SHA-2** - SHA-2 includes significant changes from its predecessor: The SHA-2 family consists of six hash functions with digests (hash values) that are 224, 256, 384, or 512 bits
+  
+  - **SHA-3** - The latest iteration of the SHA family with a varied output of 224, 256, 384 or 512 bits
+
+&nbsp;
+
+## Hash Attacks 
+  - A **Hash Collison Attack** is an attempt to find two input strings of a hash function that produce the same hash result. Because hash functions have infinite input length and a predefined output length, there is inevitably going to be the possibility of two different inputs that produce the same output hash
+
+  - **Birthday Attacks**: This applies to finding collisions in hashing algorithms because it is much ahrder to find something that collides with a given hash than it is to find any two inputs that hash to the same value
+
+  - Birthday Attack Example - A classroom of 30 students and a teacher: The teacher wishes to find pairs of students that have the same birthday
+    * The teacher asks for everyone's birthday to find such pairs
+    * For example, if the teacher fixes a particular date, say October 10, then the probability that at least one student is born on that day is about 7.9%
+    * However, the probability that at least one student has the same birthday as any other student is around 70%
+
+&nbsp;
+
+  - Birthday Attacks and Digital Signatures
+    * A message ***m*** is typically signed by first computing ***H(m)***, where ***H*** is cryptographic hash function, and then using some secret key to sign ***H(m)***. Suppose Alice want to trick Bob into signing a fraudulent contract
+
+    * Alice prepares a fair contract ***m*** and fraudulent one ***m'***. She then finds a number of positions where ***m*** can be changed without changing the meaning, such as inserting commas, empty lines, one versus two spaces after a sentence, replacing synonyms etc. By combining these changes, she can create a huge number of variations on m which are all fair contracts
+
+    * Similarly, Alice can also make some of these fchanges on ***m'*** to take it even more closer towards ***m***. that is ***H(m) = H(m')***. Hence, Alice can now present the fair version ***m*** to Bob for signing. After Bob has signed, Alice takes the signature and attaches it to the fraudulent contract. This signatures proves that Bob has signed the fraudulent contract
+
+  - To avoid such an attack, the output of hash function should be a very long sequence of bits such that the birthday attack now becomes computationally infeasible
+
+&nbsp;
+
+  - **Brute Force**: In cryptography, a brute-force attack consists of an attacker trying many password or passphrases with the hope of eventually guessing correctly
+
+  - **Dictionary**: A technique for defeating a cipher or authentication mechanism by trying to determine its decryption key or passphrase by trying hundreds or sometimes millions of likely possibilities, such as words in a dictionary
+
+  - **Rainbow Table**: A rainbow table is a precomputed table for reversing cryptographic hash functions, usually for cracking password hashes
+
+&nbsp;
+---
+
+`PKI (Public Key Infrastructure`
+## Term: Digital Certificate
+  - Identity and proof of key ownership
+
+  - It is a digital representation of an identity, and it allows on to confirm with who you are transferring data to/from
+
+  - A certificate binds an entity's unique distinguished name (DN) and other additional attributes that identifies an entity with a public key associated with its corresponding private key
+
+  - In cryptography, a certificate authority or certification authority (CA) is an entity that issues digital certificates. A digital certificate certifies the ownership of a public key by the named subject of the certificate
+
+  - Certificate Authorities are the foundation of PKI
+  
+  - Offloads the trust to a third party
+
+  - Relying parties can rely on signatures or assertions that correspond to the certificate being presented
+
+&nbsp;
+
+## Public Key Infrastructure (PKI)
+  - A highly protected ecosystem that allows for businesses to issue trusted Digital Certificates
+
+  - There is a chain of trust in the issuing and root CA's and in many cases the root certificate is "offline" only used when cutting a certificate for an issuing CA. This protects the root
+
+&nbsp;
+
+## Term: Certificate Signing Request (CSR)
+  - Host creates a key pair - Private and Public key
+  - Host creates the CSR with information specific about the host (distinguished name, location, business name, etc...)
+  - Information about the host is hashed and signed creating a digital signature
+  - Public Key, CSR and Signature are sent to the CA for validation
+  - Information validated and a signed certificate is produced with CA private key
+  - Singed certificate is returned to host. This proves that the host owns the private key
+
+&nbsp;
+---
+
+`Password Management`
+## Password Handling - Best Practices
+  - Align password length, complexity and rotation policies with National Institute of Standards and Technology (NIST) 800-63b's guidelines in section 5.1.1
+
+  - Implement multi-factor authentication to prevent credential stuffing, brute-force and stolen credential reuse
+
+  - Limit failed login attempts
+
+  - Used advanced authentication methods (biometrics, PKI, passwordless tech)
+
+  - Always transmit over secure, encrypted channels. Store securely using hashing
+
+  - Make sure passwords are never logged in log files
+
+  - Do not utilize default passwords when deploying (especially for admin/privilege accounts)
+
+  - Check passwords against the top 10k weak passwords:
+    #### <span>https://</span>github.com/danielmiessler/SecLists/blob/master/Passwords/Common-Credentials/10-million-password-list-top-100000.txt
+  
+&nbsp;
+
+## Password Storage - Best Practices
+  - Never store passwords in plain text, only one-way hashes
+
+  - Use a cryptographically strong hash algorithm
+    * Argon2id, scrypt, bcrypt or PBKDF2 depending on requirements
+
+  - Use sufficent "salt" during hashing and don't reuse "salt" values
+
+  - Physically segregate stored hashes from rest of application data
+
+&nbsp;
+
+## What Is Entropy?
+  - Entropy is a measure of the disorder of a system
+
+&nbsp;
+
+## Password Entropy
+  - Password entropy is based on the character set used (which is expandible by using lowercase, uppercase and numbers as well as symbols) as well as password length
+  
+  - Password entropy predicts how difficult a given password would be to crack through guessing, brute force cracking, dictionary attacks or other common methods
+
+  - Note: Encryption creates randomness which cannot be compressed as well. For maximum efficiency, you should compress before encrypting
+
+&nbsp;
+---
+
+# Section 9: Frameworks And Processes
+`HIPAA (Health Insurance Portability and Accountability Act)`
+## Data Classification 
+  - **Restricted**
+    * Highly sensitive information
+
+  - **Confidential**
+    * Sensitive information
+
+  - **Internal**
+    * Non-sensitive information that is not released to the public
+
+  - **Public**
+    * Information has been approved for public access
+
+&nbsp;
+
+## Types Of Data
+![Various types of data](AppSecurityImages/TypesOfData.png)
+
+&nbsp;
+
+## HIPAA Titles
+  - Five titles:
+    * Title I - Health Care Access, Portability and Renewability
+
+    * Title II - Preventing Healthcare Fraud and Abuse; Administrative Simplification; Medical Liability Reform
+
+    * Title III - Tax related health provisions governing medical savings accounts
+
+    * Title IV - Applicaition and enforcement of group health insurance requirements
+
+    * Title V - Revenue offset governing tax deductions for employers
+
+#### **Title II** of HIPAA establishes policies and procedures for maintaining the privacy and the security, and the security of individually identifiable health information, outlines numerous offenses relating to health care, and establishes civil and criminal penalties for violations
+
+&nbsp;
+#### Privacy Rule: The HIPAA Privacy Rule regulates the use and disclosure of protected health information (PHI) held by "covered entities" (generally, health care clearing houses, employer sponsored health plans, health insurers, and medical service providers that engage in certain transactions)
+
+&nbsp;
+#### Rule 3 - Security Rule: The Security Rule complements the Privacy Rule. While the Privacy Rule pertains to all Protected Health Information (PHI) including paper and electronic, the Security Rule deals specifically with Electronic Protected Health Information (EPHI)
+
+&nbsp;
+
+## What Is PHI
+  - Names, phone numbers, email addresses
+
+  - All geographical identifiers smaller than a state, except for the initial three digits of a zip code
+
+  - Dates (other than year) directly related to an individual
+
+  - SSN, account numbers, medical record numbers
+
+  - Health insurance beneficiary numbers
+
+  - Certificate/license numbers
+
+  - Vehicle identifiers and serial numbers, including license plate numbers
+
+  - Device identifiers and serial numbers
+
+  - Web Uniform Resource Locators (URLs)
+
+  - Internet Protocol (IP) address numbers
+
+  - Biometric identifiers, including finger, retinal and voice prints
+
+  - Full face photographic images and any comparable images
+
+  - Any other unique identifying number, characteristics, or code
+
+&nbsp;
+
+## Privacy In HIPAA
+  - With respect to health information, **privacy** is defined as the rights of an individual to keep his/her individual health information from being disclosed. This is typically achieved through policy and procedure
+
+    * Privacy encompasses controlling who is authorized to access patient information; and under what conditions patient information may be accessed, used and/or disclosed to a third party
+
+&nbsp;
+
+  - **Security** is defined as the mechanism in place to protect the privacy of health information. This includes the ability to control access to patient information, as well as to safeguard patient information from unauthorized disclosure, alteration, loss or destruction
+
+    * Security is typically accomplished through operational and technical controls within a covered entity. Since so much PHI is now stored and/or transmitted by computer systems, the HIPAA Security Rule was created to specifically address electronic protected health information
+
+&nbsp;
+---
+
+`PCI DSS (Payment Card Industry Data Security Standard`
+## PCI
+  - The Payment Card Industry Data Security Standard (PCI DSS) is an information security standard for organizations that handle branded credit cards from the major card schemes
+
+  - The PCI standard is mandated by the card brands and administered by the Payment Card Industry Security Standards Council
+
+  - The standard was created to increase controls around cardholder data to reduce credit card fraud
+
+&nbsp;
+
+## PCI DSS
+![PCI DSS Compliance](AppSecurityImages/PCIDSSCompliance.png)
+
+#### Objectives of PCI Security Requirements
+  - Minimizing the Attach Surface
+  - Software Protection Mechanisms
+  - Secure Software Operations
+  - Secure Software Lifecycle Management
+
+&nbsp;
+---
+
+`DevOps & CICD`
+## CI - Continuous Integration
+  - Automation that delivers software more frequently to an environment
+  
+  - Continuous Integration - A development practice that requires developers to integrate code into a shared repository several times a day. Each check-in is then verified by an automated build, allowing teams to detect problems early
+
+&nbsp;
+
+  - Because you're integrating so frequently, there is significantly less back-tracking to discover where things went wrong, so you can spend more time building features
+
+  - Continuous Integration is cheap. Not integrating continuously is expensive
+
+  - Not following a continuous approach, means you'll have longer periods between integrations. This makes it exponentially more difficult to find and fix problems. Such integration problems can easily knock a project off-schedule, or cause it to fail altogether
+
+&nbsp;
+
+## Continuous Delivery/Deployment
+  - **Continuous Deployment** - The ability to get changes of all types into production, or into the hands of users, safely and quickly in a sustainable way
+
+  - **Continuous Delivery** - The ability for a team to perform all integration tasks and make a production ready package ready and available
+
+  - The difference between continuous deployment and continuous delivery is that in continuous delivery, the package is not pushed to a production environment without manual intervention
+
+&nbsp;
+
+## What Is DevOps
+  - Simply put, it is the breakdown of the barrier between Development and Operations
+
+  - Development:
+    * Responsible for writing production ready code
+
+  - Operations: 
+    * Responsible for delivering and maintaining the code deployed in a production environment
+
+&nbsp;
+---
+
+`DevSecOps`
+## How Do We Inject Security
+  - **Some of the basics from the SDLC still apply**:
+    * Threat modeling, abuse cases, code review, secure config, WAF ...
+
+  - **Tools can be slow, especially Static Analysis**
+    * Try to reduce the size of the code being scanned 
+    * Large code base means long scan times
+  
+  - **Fast feedback loop from production**
+    * Ensure that you have a means to deliver vulnerability or defect information quickly to the right development team(s)
+
+  - **Patching** 
+    * Have a means for delivering patches quickly (following the DevOps principles)
+
+&nbsp;
+
+![](AppSecurityImages/DevSecOps.png)
+
+&nbsp;
+
+## Unit Test -> Integration Test -> System Test -> Manual Validation -> Deployment
+### Test early and often:
+  - **Small** - Unit Tests
+    * Function level. Input and Output is expected
+
+  - **Medium** - Integration Tests
+    * Function that has external dependencies
+
+  - **Large** - System Tests
+    * Critical Components only
+    * Tackle the APIs, leave the UI untested
+
+  - **Manual Validation**
+    * Every commit or just exploratory testing
+
+&nbsp;
+
+## Bottom Line
+  - Test Early, Test Often
+
+  - Use the scanning tools available and scan smaller scopes
+
+  - DAST, RASP, IAST, WAF work better in a DevOps environment than SAST
+
+  - Constant feedback loop of communication
+
+  - Monitoring for vulnerabilities in the environment
+
+  - Monitoring external sources for vulnerabilities in 3<sup>rd</sup> parties
+
+&nbsp;
+---
+
+`Use, Abuse & Misuse Cases`
+## Use Case
+  - In software and systems engineering, a use case is a list of actions or event steps typically defining the interactions between an actor and a system to achieve a goal
+
+  - The actor can be a human or other external system
+
+&nbsp;
+
+## Abuse/Misuse Case
+  - A misuse case highlights something that should not happen (i.e. Negative Scenario) and the threats hence identified, help in defining new requirements, which are expressed as new Use Cases
+
+  - An abuse case is a type of complete interaction between a system and one or more actors, where the results of the interaction are harmful to the system, one of the actors, or one of the stakeholders in the system
+
+&nbsp;
+
+## Sample Abuse Case
+![](AppSecurityImages/AbuseCase.png)
+
+&nbsp;
+--- 
+
+# Section 10: Security Scanning And Testing
+`SAST (Static Application Security Testing`
+## General Guidance
+  - Most enterprises use many (even all) of the techniques outlined here
+
+  - Not each solution is a silver bullet
+
+  - Many solutions are platform or language dependent
+    * This means that if you are using multiple platform or languages, you will need more than one tool (very few enterprises are monolithic)
+
+  - Results are different in each solution and there are many false positives
+
+  - You may be mandated by your environment to run tools
+    * Government, financial, healthcare, etc...
+
+  - Every vendor will tell you their solution fits their needs
+    * They tell you your problem, then sell you their solution
+
+&nbsp;
+
+  - **False positive** - A finding in a tool or through some other technique that turns out to not be a viable finding
+    * **Example**: Tools that claim there is a password in clear text when it simply found the word "password" in the code
+
+  - **False negative** - A vulnerability that is able to get past a scanning tool or other technique that is looking for vulnerabilities
+    * **Example**: An SQL injection vulnerability that is not identified by a scanning tool
+
+&nbsp;
+
+## How Static Analysis Works
+  - Static Code Analysis commonly refers to the running of Static Code Analysis tools that attempt to highlight possible vulnerabilities within 'static' (non-running) source code by using techniques such as Taint Analysis and Data Flow Analysis
+
+  - Most static analysis tools are used as an aid for an analyst to help zero in on security relevant portions of code so they can find flaws more efficiently, rather than a tool that simply finds flaws automatically
+
+&nbsp;
+
+## Taint And Lexical Analysis
+  - Taint Analysis attempts to identify variables that have been 'tainted' with user controllable input and traces them to possible vulnerable functions also known as a 'sink'. If the tainted variable gets passed to a sink without first being sanitized, it is flagged as a vulnerability
+
+  - Lexical Analysis converts source code syntax into 'tokens' of information in an attempt to abstract the source code and make it easier to manipulate
+
+&nbsp;
+
+## Strengths Of SAST Process
+  - Helps in identifying the flaws in code
+
+  - The testing is conducted by trained software developers with good knowledge of coding
+  
+  - It is fast and easy way to find and fix the errors
+
+  - With automated tools, it becomes quite fast to scan and review the software
+
+  - The use of Automated tools provides mitigation recommendations
+
+  - With static testing, it is possible to find errors at an early stage of development life cycle, thus, in turn, reduces the cost of fixing
+
+&nbsp;
+
+## Weakness
+  - Demand great amount of time when done manually
+
+  - Automated tools works with few programming languages
+
+  - Automated tools may provide false positives and false negatives
+
+  - Automated tools only scan the code
+
+  - Automated tools cannot pinpoint weak points that may create troubles in run-time
+
+&nbsp;
+---
+
+`DAST (Dynamic Application Security Testing`
+## DAST 
+  - **DAST** - A black-box security testing methodology in which an application is tested from the outside in by examining an application in its running state and trying to attack it just like an attacker would
+
+  - DAST scanners are for the most part, technology independent. This is because DAST scanners interact with an application from the outside-in and rely on HTTP as a common language across a myriad of programming languages, off-the-shelf and even custom-built frameworks
+
+  &nbsp;
+
+## Strengths of DAST 
+  - Not as technology dependent
+  - Can be run in production
+  - Not as many false positives
+  - Can test software that you don't own
+  - Can be used to enhance penetration testing
+
+&nbsp;
+
+## Weakness of DAST
+  - Can't locate the line of code
+  - Findings are later in the SDLC - Although you can do dynamic scanning earlier
+  - Doesn't locate code specific security issues (i.e. hard coded passwords)
+  - Findings still need to be verified by a subject matter expert
+
+&nbsp;
+---
+
+`IAST (Interactive Application Security Testing)`
+## IAST
+  - Assesses applications from within using software instrumentation
+
+  - This technique allows IAST to combine the strengths of both SAST and DAST methods as well as providing access to code, HTTP traffic, library information, backend connections and configuration information
+
+  - Some IAST products require the application to be attacked, while others can be used during normal quality assurance testing
+
+&nbsp;
+
+## Strengths of IAST
+  - Agents - installing agents mean that there is continuous monitoring that is always active
+  - Works well in the DevOps (for DevSecOps) model
+  - Lower cases of false positives since it can "see" active attacks and not potential ones
+  - Can have a targeted approach to defining the security scope
+
+&nbsp;
+
+## Weakness of IAST
+  - Agents - In the real world, agents are resisted because the owners of systems are not always sure of what the agent is doing
+
+  - Instrumentation means possibly development and deployment work to take advantage of the benefits
+
+  - Many of them only work when they "see" something. In other words, you need to exercise a workflow for it to be picked up
+
+  - Steep learning curve for deployment and reviewing the results since it doesn't point to the line of code (see dynamic analysis)
+
+&nbsp;
+--- 
+
+`RASP (Runtime Application Self-Protection)`
+## RASP  
+  - A security technology that uses runtime instrumentation to detect and block computer attacks by taking advantage of information from inside the running software
+
+  - RASP technology can improve the security of software by monitoring its inputs, and blocking those that could allow attacks, while protecting the runtime environment from unwanted changes and tampering
+
+  - RASP can prevent exploitation and possible take other actions, including terminating a user's session, shutting the application down, alerting security personnel and sending a warning to the user
+
+&nbsp;
+
+## Strengths of RASP
+  - Can be configured to block or monitor
+
+  - Can block attacks as they happen
+
+  - Since this is similar to DAST and IAST (in fact this is commonly referred to as a combination of both) see the strengths listed in those tools
+
+&nbsp;
+
+## Weakness of RASP
+  - Needs to see an attack as it happens (see IAST)
+
+  - Potential to block legitimate traffic
+
+  - Someone (or some group) needs to own the rules that define what is blocked
+
+  - Since this is similar to DAST and IAS (in fact this is commonly referred to as a combination of both), see the weaknesses listed in those tools
+
+&nbsp;
+---
+
+`WAF (Web Application Firewall`
+## WAF
+  - An application firewall for HTTP applications. It applies a set of rules to a HTTP conversation. Generally, those rules cover common attacks such as cross-site scripting (XSS) and SQL injection
+
+  - It is deployed in front of web applications and analyzes bi-directional web-based (HTTP) traffic - detecting and blocking anything malicious
+
+  - This functionality can be implemented in software or hardware, running in an appliance device, or in a typical server running a common operating system
+
+  - WAFs may come in the form of an appliance, server plugin, or filter, and may be customized to an application
+
+  - Note: WAF's can sometimes be considered an ASM (Application Security Manager)
+
+&nbsp;
+
+## WAF - Deployment
+  - Although the names for operating mode may differ, WAF's are basically deployed inline as: 
+
+    * **Transparent bridge** - It inspects only the traffic that is configured for inspection while bridging all other traffic. Bridge mode deployment can be achieved with no changes to the network configuration of the upstream devices or web servers
+
+    * **Reverse Proxy** - Reverse proxy deployments accept traffic on the virtual IP address and proxy the traffic to the back-end server network behind the Web Application Firewall
+
+&nbsp;
+
+## Strengths Of WAF
+  - Can be in blocking or reporting mode
+  - Can be independent of the application
+  - Can block the following
+    * Cross-site Scripting (XSS)
+    * SQL Injection
+    * Cookie Poisoning
+    * Unvalidated Input
+    * DoS 
+    * Web Scraping
+
+&nbsp;
+
+## Weakness Of WAF
+  - Potential Performance Issues
+  - Not actually solving the problems
+  - Can't protect against every security issue
+
+&nbsp;
+
+## Types Of WAFs
+### Network Based
+  - Pro: **Low network latency** since they're connected directly to the web servers
+  - Con: Higher cost and tougher management across large DCs
+
+### Host Based 
+  - Pro: Affordable, no network latency
+  - Con: Agents. Engineering costs/time. Can create complexity with application
+
+### Cloud Hosted 
+  - Pro: Cheapest. Auto update/maintained. Quick to deploy
+  - Con: High network latency. No ownership
+
+&nbsp;
+---
+
+`Penetration Testing`
+## Types Of Penetration Testing
+  - **White Box** - Provides information about the system to the tester. This can include code, credentials, network maps and other system information
+
+  - **Black Box** - Provides little to no system information. This resembles a typical attack where the information that can be gathered is generally only public information
+
+  - **Grey Box** - The in-between state. Some information but possibly limited to just essential information
+
+  - **Internal** - A team that is employed at the target company. This is a team/group that has other duties at the company, but is engaged for a period of time to target a specific system/application
+
+  - **External** - An external party that is engaged to test the system/application. Scoper is defined and the party is given a timeframe for completion
+
+&nbsp;
+
+## Strengths Of Penetration Testing
+  - Findings are typically true findings that are actionable
+  - Can be scoped to specific areas and time
+  - Can be used in combination with other security methods
+    * Findings in threat model of scan tools can be verified
+
+&nbsp;
+
+## Weakness Of Penetration Testing
+  - Not usually a full system test, typically very targeted
+  - Can be expensive and time consuming
+  - Findings need to be secured, especially when a 3<sup>rd</sup> party is involved in the testing
+
+&nbsp;
+---
+
+`SCA (Software Composition Analysis)`
+## SCA  
+  - SCA is the process of validating that the components, libraries, and opensource software that is used in an application is free from known vulnerabilities and license compliance
+
+  - These external software components can come from several places:
+    * Downloads, commercial applications, third-party libraries and software, and from outsourced development by consulting
+
+  - SCA can provide: 
+    * Component tracking and inventory 
+    * Vulnerability identification and remediation recommendation 
+    * License management
+
+&nbsp;
+
+## OWASP Dependency Check
+  - .NET and Java compatible. Dependency Check is used to scan libraries used as build dependencies during the build process
+
+  - Dependencies are matched against the NVD (National Vulnerability Database) to determine whether the dependency being used is vulnerable
+
+  - A report is generated and can be used to identify the dependencies as well as understand the mitigation (In most casses, the mitigation is to use the most up to date level of software)
+
+&nbsp;
+---
+
+# Section 11: Conclusion  
+`Conclusion`
+## Secure Design & Coding
+  - Threat model early (what can go wrong)
+
+  - Ensure secure defaults in your IDE
+
+  - Engage with secure training where possible
+  
+  - Leverage secure references from frameworks
+
+&nbsp;
+
+  - Integrate SAS%, and SCA in the IDE and SDLC
+
+  - Get familiar with your security team for help
+
+  - Perform secure code reviews
+
+  - Reuse components that have alread been secured
+
+&nbsp;
+
+## Secure Testing
+  - SAST and SCA should be integrated early
+
+  - DAST should be used in running environments
+
+  - IAST should be used in running environments
+
+  - WAF and RASP should be used in production
+
+  - Have a process for external notifications
+
+&nbsp;
+
+  - Have a patch management process
+
+  - Patching includes testing and delivery of fix
+
+  - Have a process for handling false positives
+
+  - Tune tools based on findings
+
+  - Know the strengths and weaknesses of each tool
+
+&nbsp;
+
+## Remember The Basics
+  - Don't blindly trust the end user inputs
+
+  - Ensure secure defaults and hardened servers
+
+  - Protect the application secrets with encryption
+
+  - Keep secrets out of the code - not hardcoded
+
+  - Leverage frameworks for secure authentication
+
+&nbsp;
+
+  - Ensure sensitive business flows are logged
+
+  - Protect data in motion, at rest, and in use
+
+  -  Keep the design simple to reduce attack surface
+
+  - Practice defense in depth
+
+  - Resolve issues at the root of the problem, not the surface
+
+&nbsp;
+---
