@@ -2,6 +2,7 @@
 
 <!-- Application Security Introduction -->
 `Application Security Introduction`
+# Section 2: Welcome!
 ## SDLC (Software/System Development Life Cycle)
 
 ![Software Development Lifecycle](AppSecurityImages/SDLC.png)
@@ -81,6 +82,7 @@
 
 <!-- Introduction to OWASP Top 10 -->
 `Introduction to OWASP`
+# Section 3: Introduction To OWASP Top 10 And More Terms
 
 | **OWASP Top 10 - 2021**                           |
 | ------------------------------------------------- |
@@ -515,7 +517,7 @@
 
 <!-- Section 4: Dive into the OWASP Top 10 -->
 `Broken Access Control` 
-
+# Section 4: Dive Into The OWASP Top 10
 ## Authorization
   - Authorization is the process where requests to access a resource should be granted or denied. It should be noted that authorization is not equivalent to authentication - as these terms and their definitions are frequently confused
 
@@ -952,6 +954,7 @@
 ---
 
 `Cross Site Scripting`
+# Section 5: Defenses And Tools
 ## Cros-Site Scripting (XSS)
   - Is a type of computer security vulnerability typically found in web applications. XSS enables attackers to inject client-side scripts into web pages viewed by other users. A cross-site scripting vulnerability may be used by attackers to bypass access controls such as the same-origin policy
 
@@ -1179,6 +1182,7 @@
 ---
 
 `Session Management`
+# Section 6: Session Management
 ## Sessions
   - A web session is a sequence of network HTTP request and response transactions associated to the same user
   - Modern and complex web applications require the retaining of information or status about each user for the duration of multiple requests
@@ -1351,3 +1355,223 @@
   - As JWT's are self-contained, all the necessary information is there, reducing the need of going back and forward to the datbase
 
 &nbsp;
+
+## JWT workflow diagram
+![JWT Flow Diagram](AppSecurityImages/JWTFlowDiagram.png)
+
+&nbsp;
+
+## Structure
+### In its compact form, JSON Web Tokens consist of three parts separated by dots (.), which are:
+  - **Header** - The header typically consists of two parts: the type of the token. which is JWT, and the hashing algorithm being used, such as HMAC SHA256 or RSA
+
+  - **Payload** - The second part of the token is the payload, which contains the claims. **Claims are statements about an entity** (typically the user) and additional data. There are three types of claims: registered, public, and private claims
+
+  - **Signature** - To create the signature part, you have to take the encoded header, the encoded payload, a secret, the algorithm specified in the header, and sign that
+
+### Therefore, a JWT typically looks like the following
+  xxxxx.yyyyy.zzzzz
+
+&nbsp;
+
+## JWT Example - Header
+  {
+
+    "alg":"HS256" 
+    "typ":"JWT"
+
+  }
+
+Then, this JSON is Base64Url encoded to form the first part of the JWT
+
+&nbsp;
+
+## JWT Example - Payload
+  - **Registered claims**: These are a set of predefined claims which are not mandatory but recommended, to provide a set of useful, interopable claims. Some of them are: iss (issuer), exp (expiration time), aud (audience), and others
+
+  - **Public claims**: These can be defined at will by those using JWTs. But to avoid collisions they should be defined in the IANA JSON Web Token Registry or be defined as a URL that contains a collision resistant namespace
+
+  - **Private claims**: These are the custom claims created to share information between parties that agree on using them and are neither registered or public claims
+
+&nbsp;
+
+## JWT Example - Payload (Continued)
+  {
+
+    "sub": "1234567890",
+    "name": "John Doe",
+    "admin": true
+
+  }
+
+&nbsp;
+
+The payload is then Base64Url encoded to form the second part of the JSON Web Token.
+
+**Note**: For signed tokens, this information, though protected against tampering, is readable by anyone. Do not put secret information in the payload or header elements of a JWT unless it is encrypted.
+
+&nbsp;
+
+## JWT Example - Signature
+
+For example, if you want to use the HMAC SHA256 algorithm, the signature will be created in the following way:
+
+  HMACSHA256(base64UrlEncode(header) +"."+ base64UrlEncode(payload), secret)
+
+The signature is used to verify the message wasn't changed along the way, and in the case of tokens signed with a prviate key, it can also verify that the sender of the JWT is who it says it is.
+
+&nbsp;
+--- 
+
+`OAuth`
+## Definition
+  - OAuth is an open standard for access delegation, commonly used as a way for internet users to grant websites or applications access to their information on other websites but without giving them the passwords
+
+  - This mechanism is used by companies such as Amazon, Google, Facebook, Microsoft and Twitter to permit the users to share information about their accounts with third party applications or websites
+
+  - OAuth decouples authentication from authorization and supports multiple use cases addressing different device capabilities. It supports server-to-server apps, browser-based apps, mobile/native apps, and consoles/TVs
+
+  - OAuth is a delegated authorization framework for REST/APIs. It enables apps to obtain limited access (scopes) to a user's data without giving away a user's password
+
+  - Designed specifically to work with HTTP, OAuth essentially allows access tokens to be issued to third-party clients by an authorization server, with the approval of the resource owner. The third party then uses the access token to access the protected resources by the resource server
+
+&nbsp;
+
+## OAuth Actors
+![OAuth Actors](AppSecurityImages/OAuthActors.png)
+
+&nbsp;
+
+- **Resource Owner**: Owns the data in the resource server. For example, I'm the Resource Owner of my Facebook profile
+- **Resource Server**: The API which stores data the application wants to access
+- **Client**: The application that wants to access your data
+- **Authorization Server**: The main engine of OAuth
+
+&nbsp;
+
+## OAuth Scopes
+![OAuth Scopes](AppSecurityImages/OAuthScopes.png)
+
+Scopes are what you see on the authorization screens when an app requests permission. They're bundles of permissions asked for by the client when requesting a toke. These are coded by the application developer when writing the application
+
+&nbsp;
+
+## OAuth Tokens
+  - Access tokens are the token the client uses to access the Resource Server (API). They're meant to be short-lived. Think of them in hours and minutes, not days and month. Because these tokens can be short-lived and scale out, they can't be revoked. You just have to wait for them to time out
+
+  - The other token is the refresh token. This is much longer-lived; days, months, years. This can be used to get new tokens and can be revoked to kill an application's access
+
+  - The OAuth spec doesn't define what a token is. It can be in whatever format you want. Usually though, you want these tokens to be JSON Web Tokens
+
+*Tokens are retrieved from endpoints on the authorization server:*
+  - The **authorize endpoint** is where you go to get consent and authorization from the user
+  - The **token endpoint** provides the refresh token and access token
+
+![Access Token](AppSecurityImages/endpoint.png)
+
+*You can use the access token to get access to APIs. Once it expires, you'll have to go back to the token endpoint with the refresh token to get a new access token*
+
+  - **Scopes** are from Gmail's API
+
+  - The **redirect_url is the URL of the client application that the authorization grant should be returned to
+
+  - **Response type** indicates that your server expects to receive an authorization code
+
+  - **Client ID** is from the registration process
+
+  - **State** is a random string generated by your application, which you'll verify later
+
+The **code** returned i9s the authorization grant and **state** is to ensure it is not forged and it is from the same request
+
+&nbsp;
+---
+
+`OpenID & OpenID Connect`
+## OpenID 1.0 And 2.0
+
+OpenID is an open standard and decentralized authentication protocol promoted by the non-profit OpenID Foundation.
+
+  - It allows users to be authenticated by co-operating sites (known as relying parties, or RP) using a third-party service, eliminating the need for webmasters to provide their own ad hoc login systems, and allowing users to log into multiple unrelated websites without having to have a separate identity and password for each
+
+The OpenID standard provides a framework for the communication that must take place between the identity provider and the OpenID acceptor ("the relying party")
+
+The OpenID protocol does not rely on a central authority to authenticate a user's identity
+
+  - Neither services nor the OpenID standard may mandate a specific means by which to authenticate users, allowing for approaches ranging from the common (such as passwords) to the novel (such as smart cards or biometrics)
+
+&nbsp;
+
+## What Is OpenID
+
+OpenID allows you to use an existing account to sign into multiple websites, without needing to create new passwords.
+
+You may choose to associate information with your OpenID that can be shared with the websites you visit, such as a name or email address.
+
+With OpenID, your password is only given to your identity provider, and that provider then confirms your identity to the websites you visit. Other than your provider, no website ever sees your password.
+
+&nbsp;
+
+## OpenID Authentication
+
+The end-user interacts with a relying party (such as a website) that provides an option to specify an OpenID for the purposes of authentication
+
+The relying party and the OpenID provider establish a shared secret, which the relying party then stores.
+
+The relying party redirects the end-user's user-agent to the OpenID provider so the end-user can authenticate directly with the OpenID provider. 
+
+If the end-user accepts the OpenID provider's request to trust the relying party, then the user-agent is redirected back to the relying party.
+
+&nbsp;
+
+## OAuth and OpenID Connect
+  - OAuth is directly related to OpenID Connect (OIDC) since OIDC is an authentication layer built on top of OAuth 2.0. OAuth is also distinct from XACML, which is an authorization policy standard
+
+  - OAuth can be used in conjunction with XACML where OAuth is used for ownership consent and access delegation whereas XACML is used to define the authorization policies (e.g. managers can view documents in their region)
+
+&nbsp;
+
+## What Is OpenID Connect
+  - OpenID Connect 1.0 is a simple identity layer on top of the OAuth 2.0 protocol
+
+  - It allows clients to verify the identity of the End-User based on the authentication performed by an Authorization Server, as well as to obtain basic profile information about the End-User in an interoperable and the REST-like manner
+
+  - OpenID Connect allows clients of all types, including Web-based, mobile, and JavaScript clients, to request and receive information about authenticated sessions and end-users
+
+  - The specification suite is extensible, allowing participants to use optional features such as encryption of identity data, discovery of OpenID Providers, and session management, when it makes sense for them
+
+&nbsp;
+---
+
+# Section 7: Risk Rating And Threat Modelling
+`Risk Rating Introduction`
+
+## When And Why Do We Risk Rate 
+  - Risk Rating should be completed when there is a finding from a review of the application architecture/design from threat modelling, through a code review, or a penetration test
+
+  - The goal of risk rating is to identify the risk to the system and business in order to put a plan in place to address the risk through prioritization
+
+&nbsp;
+
+## Risk Rating Method
+![Risk Rating Method](AppSecurityImages/RiskRatingMethod.png)
+
+&nbsp;
+
+## Identify A Risk
+  - The first step is to identify a security risk that needs to be rated. The tester needs to gather information about the threat agent involved, the attack that will be used, the vulnerability involved, and the impact of a successful exploit on the business
+
+&nbsp;
+
+## Estimating Likelihood
+  - Once the tester has identified a potential risk and wants to figure out how serious it is, the first step is to estimate the "likelihood". At the highest level, this is a rough measure of how likely this vulnerability is to be uncovered and exploited by an attacker
+
+  -  Here you are using the **Threat Agent Factors** and **Vulnerability Factors**
+
+&nbsp;
+
+## Factors
+  - **Threat Agent** - The goal here is to estimate the likelihood of a successful attack by this group of threat agents. Use the worst-case threat agent
+    * Skill Level, Motive, Opportunity, Size
+
+  - **Vulnerability** - The goal here is to estimate the likelihood of the particular vulnerability involved being discovered and exploited. Assume the threat agent selected above 
+    * Ease of Discovery, Ease of Exploit, Awareness, Intrusion Detection
