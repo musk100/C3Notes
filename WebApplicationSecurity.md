@@ -475,6 +475,6 @@
 
   ### How to prevent?
    - Check access rights (e.g. proper authorization)
-   - Input validation
+   - Input validation 
 
 ---
